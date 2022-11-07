@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="tel">Senha2</label>
-                                    <input type="text" class="form-control" name="senha2" id="senha2" placeholder="Digite a senha novamente" required>
+                                    <input type="text" class="form-control" name="senhaConfirme" id="senhaConfirme" placeholder="Digite a senha novamente" required>
                                 </div>
                                 
                             </div>

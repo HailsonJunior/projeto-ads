@@ -27,9 +27,29 @@
 						if(!senha.equals(senha2)){
 							out.println("<div class='alert alert-danger'>As senhas sao diferentes!</div>");
 						} else {
-							if(senha.equals("1123456")){
+							if(senha.equals("123456")){
 							  out.println("<div class='alert alert-danger'>A senha deve ser diferente da anterior!</div>");
 							} else{
+								try {
+								  String usuario = "admin";
+								  Class.forName("com.mysql.jdbc.Driver");
+								  Connection conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/natureza_viva","root","");
+                                  PreparedStatement admin = conexao.prepareStatement("select * from usuarios where usuario like ?");
+                                  admin.setString(1, "admin");
+                                  ResultSet resultado = admin.executeQuery();
+                                  if(!resultado.next()){
+								    out.println("<div class='alert alert-danger'>Usuário admin não cadastrado no banco!</div>");
+								  }
+								} catch (ClassNotFoundException erroClass){
+								    out.println("<div class='alert alert-danger'><b><i class='fa fa-times-circle'></i> Class Driver nao foi localizado! <br>Erro</b>: " + erroClass + "</div>");
+							      } catch (SQLException e){
+								      if (e.getSQLState().equals("23000")){
+								      	out.println("<div class='alert alert-danger text-center'><i class='fa fa-times-circle'></i> Falha ao tentar alterar a senha!</div>");
+								      } else {
+								      	  out.println("<div class='alert alert-danger text-center'><b><i class='fa fa-times-circle'></i> Falha na conexao ao banco de dados!Erro</b>: " + e + "</div>");
+								      }
+							      }
+
 								try{
 								  Class.forName("com.mysql.jdbc.Driver");
 								  Connection conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/natureza_viva","root","");
@@ -51,7 +71,7 @@
 						}						
 					%>
 					<br>
-					<a class="btn btn-danger pull-left" href="../index.html"> <!-- cadastrar.html -->
+					<a class="btn btn-danger pull-left" href="./form_alterar_senha.jsp"> <!-- cadastrar.html -->
                         <i class="fa fa-arrow-circle-left"></i> Voltar
                     </a>
 				</div>
