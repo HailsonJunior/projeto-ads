@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.0/css/font-awesome.css" integrity="sha512-CB+XYxRC7cXZqO/8cP3V+ve2+6g6ynOnvJD6p4E4y3+wwkScH9qEOla+BTHzcwB4xKgvWn816Iv0io5l3rAOBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<!-- Custom CSS -->
+    <link rel="stylesheet" href="css/index.css" crossorigin="anonymous">
+  </head>
+  <body>
+		<div class="container-fluid">
+			<div class="row">
+				<dvi class="col-12">
+					<br><br><br><br><br><br><br>
+				</dvi>
+				<div class="col-3"></div>
+				<div class="col-6">
+					<br>
+					<div class="card">
+						<div class="card-header bg-dark">
+							<h4 class="card-title text-center text-white mt-2">Login</h4>
+						</div>
+						<div class="card-body">
+							<form method="post" action="jsp/auth.jsp" autocorrect="off">
+								<div class="form-group">
+									<label for="username">Usuário:</label>
+									<input type="text" name="usuario" class="form-control" id="username" placeholder="Entre com seu e-mail" required>
+								</div>
+								<div class="form-group">
+									<label for="password">Senha:</label>
+									<div class="input-group">
+										<input type="password" name="senha" class="form-control rounded" id="password" placeholder="Insira a sua senha" required>
+										<button id="toggle-password" type="button" class="d-none">
+										</button>
+									</div>
+								</div>
+								<div>
+									<button type="submit" class="btn btn-primary btn-block">
+										<i class="fa fa-sign-in"></i> Logar
+									</button>
+								</div>
+							</form>
+						</div>
+						<div class="card-footer">
+							<a class="btn btn-success pull-right" href="cadastrar.html"> <!-- cadastrar.html -->
+								<i class="fa fa-plus-circle"></i> Cadastrar
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-3"></div>
+			</div>
+		</div>
+    </body>
+  <footer>
+		<!-- jQuery and Bootstrap Bundle (includes Popper) -->
+		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+		<!-- Custom js -->
+		<script src="js/index.js"></script>
+  </footer>
+</html>
