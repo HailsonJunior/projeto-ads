@@ -23,24 +23,17 @@
                         <div class="card-header bg-info">
                             <h3 class="card-title text-center text-white">Cadastro de Amigo</h3>
                         </div>
-                        <form method="POST" action="inserir.jsp">
+                        <form method="POST" action="alterar_senha_admin.jsp">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="nome">Nome:</label>
-                                    <input type="text" class="form-control" name="nome" id="nome" placeholder="Digite seu nome" required>
+                                    <label for="nome">Senha:</label>
+                                    <input type="text" class="form-control" name="senha" id="senha" placeholder="Digite a senha" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="tel">Telefone</label>
-                                    <input type="text" class="form-control" name="tel" id="tel" placeholder="Digite seu telefone" required>
+                                    <label for="tel">Senha2</label>
+                                    <input type="text" class="form-control" name="senha2" id="senha2" placeholder="Digite a senha novamente" required>
                                 </div>
-                                <div class="form-group">
-                                    <label for="email">Email:</label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Digite seu e-mail" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="data">Data de Nascimento:</label>
-                                    <input type="date" class="form-control" name="data" id="data" placeholder="Entre com sua data" required>
-                                </div>
+                                
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-success btn-block">Enviar</button>

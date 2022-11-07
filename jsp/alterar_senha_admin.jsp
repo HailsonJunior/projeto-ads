@@ -27,23 +27,22 @@
 						if(!senha.equals(senha2)){
 							out.println("<div class='alert alert-danger'>As senhas sao diferentes!</div>");
 						} else {
-							if(senha.equals(123456)){
+							if(senha.equals("1123456")){
 							  out.println("<div class='alert alert-danger'>A senha deve ser diferente da anterior!</div>");
 							} else{
 								try{
 								  Class.forName("com.mysql.jdbc.Driver");
 								  Connection conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/natureza_viva","root","");
-								  PreparedStatement inserir = conexao.prepareStatement("update usuarios set values(?,?,?,?)");
-								  inserir.setString(3, senha); 
+								  PreparedStatement inserir = conexao.prepareStatement("update usuarios set senha = ? where usuario = 'admin'");
+								  inserir.setString(1, senha); 
 								  inserir.execute();
-								  out.println("<div class='alert alert-success text-center'><i class='fa fa-check-circle'></i> Contato salvo com sucesso!</div>");
-								  path = "../index.html";
+								  out.println("<div class='alert alert-success text-center'><i class='fa fa-check-circle'></i> Senha alterada com sucesso!</div>");
 								  inserir.close();		
 							    } catch (ClassNotFoundException erroClass){
 								    out.println("<div class='alert alert-danger'><b><i class='fa fa-times-circle'></i> Class Driver nao foi localizado! <br>Erro</b>: " + erroClass + "</div>");
 							      } catch (SQLException e){
 								      if (e.getSQLState().equals("23000")){
-								      	out.println("<div class='alert alert-danger text-center'><i class='fa fa-times-circle'></i> Usuario ja cadastrado!</div>");
+								      	out.println("<div class='alert alert-danger text-center'><i class='fa fa-times-circle'></i> Falha ao tentar alterar a senha!</div>");
 								      } else {
 								      	  out.println("<div class='alert alert-danger text-center'><b><i class='fa fa-times-circle'></i> Falha na conexao ao banco de dados!Erro</b>: " + e + "</div>");
 								        }
@@ -52,7 +51,7 @@
 						}						
 					%>
 					<br>
-					<a class="btn btn-danger pull-left" href="<% out.println(path); %>"> <!-- cadastrar.html -->
+					<a class="btn btn-danger pull-left" href="../index.html"> <!-- cadastrar.html -->
                         <i class="fa fa-arrow-circle-left"></i> Voltar
                     </a>
 				</div>
