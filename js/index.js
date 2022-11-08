@@ -11,3 +11,7 @@ togglePasswordButton.addEventListener("click", function(){
         passwordInput.type = "password";
     }
 });
+
+$('#btnLogin').click(function(){
+    $('#changePassword').modal('show');
+})
