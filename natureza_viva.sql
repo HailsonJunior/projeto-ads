@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07-Nov-2022 às 23:57
+-- Tempo de geração: 22-Nov-2022 às 01:51
 -- Versão do servidor: 10.4.20-MariaDB
 -- versão do PHP: 7.4.22
 
@@ -37,6 +37,14 @@ CREATE TABLE `agendamentos` (
   `fk_responsavel` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `agendamentos`
+--
+
+INSERT INTO `agendamentos` (`id`, `nome_local`, `tipo`, `data`, `periodo`, `status`, `fk_responsavel`) VALUES
+(3, 'test name', 'Salao', '2022-11-21', 'manha', 'usado', 1),
+(4, 'Test 2', 'Salao', '2022-11-21', 'tarde', 'pendente', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -48,6 +56,25 @@ CREATE TABLE `local` (
   `nome` varchar(50) NOT NULL,
   `tipo` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `ocorrencias`
+--
+
+CREATE TABLE `ocorrencias` (
+  `id` int(11) NOT NULL,
+  `id_agendamento` int(11) NOT NULL,
+  `comentario` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `ocorrencias`
+--
+
+INSERT INTO `ocorrencias` (`id`, `id_agendamento`, `comentario`) VALUES
+(4, 3, 'test');
 
 -- --------------------------------------------------------
 
@@ -88,6 +115,12 @@ ALTER TABLE `local`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `ocorrencias`
+--
+ALTER TABLE `ocorrencias`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -103,13 +136,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `agendamentos`
 --
 ALTER TABLE `agendamentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `local`
 --
 ALTER TABLE `local`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `ocorrencias`
+--
+ALTER TABLE `ocorrencias`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
