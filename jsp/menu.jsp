@@ -8,9 +8,7 @@
     <a class="p-2 text-dark" href="formcadastro.jsp">Cadastro</a>
     <a class="p-2 text-dark" href="agendamentos.jsp">Agendamentos Admin</a>
     <a class="p-2 text-dark" href="ocorrencias.jsp">Ocorrencias Admin</a>
-    <a class="p-2 text-dark" href="formexclui.jsp">Excluir</a>
-    <a class="p-2 text-dark" href="formbuscames.jsp">Buscar por mes</a>
-    <a class="p-2 text-dark" href="formalterar.jsp">Alterar dados</a>
+    <a class="p-2 text-dark" href="agendamentos_user.jsp">Agendamentos User</a>
   </nav>
   <a class="btn btn-danger"  href="sair.jsp">Sair</a>
 </div>
