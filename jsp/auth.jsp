@@ -38,8 +38,9 @@
 
                         if(consulta.next()){
                             //String nome = consulta.getString("nome");
-                            //session.setAttribute("nome", consulta.getString("nome"));
+                            session.setAttribute(nome_user, usuario);
                             response.sendRedirect("home.jsp"); // login success
+                            out.println(nome_user);
                         } 
                         
                         //login failed!
