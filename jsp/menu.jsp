@@ -6,10 +6,9 @@
   </h5>
   <nav class="my-2 my-md-0 mr-md-3">
     <a class="p-2 text-dark" href="formcadastro.jsp">Cadastro</a>
-    <a class="p-2 text-dark" href="formbusca.jsp">Listar</a>
-    <a class="p-2 text-dark" href="formexclui.jsp">Excluir</a>
-    <a class="p-2 text-dark" href="formbuscames.jsp">Buscar por mes</a>
-    <a class="p-2 text-dark" href="formalterar.jsp">Alterar dados</a>
+    <a class="p-2 text-dark" href="agendamentos.jsp">Agendamentos Admin</a>
+    <a class="p-2 text-dark" href="ocorrencias.jsp">Ocorrencias Admin</a>
+    <a class="p-2 text-dark" href="agendamentos_user.jsp">Agendamentos User</a>
     <a class="p-2 text-dark" href="cadastrarEspaco.jsp">Cadastrar Espaço</a>
   </nav>
   <a class="btn btn-danger"  href="sair.jsp">Sair</a>
