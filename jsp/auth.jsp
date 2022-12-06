@@ -37,10 +37,10 @@
                         ResultSet consulta = login.executeQuery();
 
                         if(consulta.next()){
-                            //String nome = consulta.getString("nome");
-                            session.setAttribute(nome_user, usuario);
+                            String username = "";
+                            String user = consulta.getString("usuario");
+                            session.setAttribute(username, user);
                             response.sendRedirect("home.jsp"); // login success
-                            out.println(nome_user);
                         } 
                         
                         //login failed!
