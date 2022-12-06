@@ -43,7 +43,7 @@
                            <%--  <div class="card text-center" style="width: 18rem;">
                                 <img src="../img/among.jpg" class="card-img-top" alt="img_perfil">
                                 <div class="card-body">
-                                    <h5 class="card-title"><% out.println(session.getAttribute("foto")); %></h5>
+                                    <h5 class="card-title"><% out.println(session.getAttribute("username")); %></h5>
                                     <p class="card-text">
                                         Esta eh a <b><%= vezes %></b> vez que voce acessa esta pagina.
                                         Seja bem vindo! <b><% out.println(session.getAttribute("nome")); %></b>

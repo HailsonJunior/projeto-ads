@@ -28,6 +28,10 @@
                         <form id="formCadastro" method="POST">
                             <div class="card-body">
                                 <div class="form-group">
+                                    <label for="username">Username responsavel</label>
+                                    <input type="text" class="form-control" name="username" id="username" placeholder="Informe o seu usuario" required>
+                                </div>
+                                <div class="form-group">
                                     <label for="nome">Nome Local</label>
                                     <input type="text" class="form-control" name="nome" id="nome" placeholder="Informe o nome do local" required>
                                 </div>
@@ -81,24 +85,31 @@
 <%@ page import="java.sql.*" %>
 <%
    if (request.getMethod().equals("POST")) {
+     String username=request.getParameter("username");
      String nome=request.getParameter("nome");
      String tipo=request.getParameter("tipo");
      String data=request.getParameter("data");
      String periodo=request.getParameter("periodo");
      String status="pendente";
-     Integer fk_responsavel=5;
 
      Class.forName("com.mysql.jdbc.Driver");
      Connection conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/natureza_viva","root",""); 
+     PreparedStatement usuario = conexao.prepareStatement("select id from usuarios where usuario = ?");
+     usuario.setString(1,username);
+     ResultSet consulta = usuario.executeQuery();
 
-     PreparedStatement statement=conexao.prepareStatement("insert into agendamentos (nome_local, tipo, data, periodo, status, fk_responsavel) values (?, ?, ?, ?, ?, ?)");
-     statement.setString(1,nome);
-     statement.setString(2,tipo);
-     statement.setString(3,data);
-     statement.setString(4,periodo);
-     statement.setString(5,status);
-     statement.setInt(6,fk_responsavel);
-     statement.execute();
-     response.setIntHeader("Refresh", 2);
+
+     if(consulta.next()){
+       Integer fk_responsavel = consulta.getInt("id");
+       PreparedStatement statement=conexao.prepareStatement("insert into agendamentos (nome_local, tipo, data, periodo, status, fk_responsavel) values (?, ?, ?, ?, ?, ?)");
+       statement.setString(1,nome);
+       statement.setString(2,tipo);
+       statement.setString(3,data);
+       statement.setString(4,periodo);
+       statement.setString(5,status);
+       statement.setInt(6,fk_responsavel);
+       statement.execute();
+       response.setIntHeader("Refresh", 2);
+    }
   }
 %>

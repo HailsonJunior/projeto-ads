@@ -37,8 +37,9 @@
                         ResultSet consulta = login.executeQuery();
 
                         if(consulta.next()){
-                            //String nome = consulta.getString("nome");
-                            //session.setAttribute("nome", consulta.getString("nome"));
+                            String username = "";
+                            String user = consulta.getString("usuario");
+                            session.setAttribute(username, user);
                             response.sendRedirect("home.jsp"); // login success
                         } 
                         
