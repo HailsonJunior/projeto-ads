@@ -25,7 +25,7 @@
                         
                         //se não for uma tentiva de login redirect para login 
                         if(!request.getMethod().equals("POST")){
-                            response.sendRedirect("../index.html");
+                            response.sendRedirect("../login.html");
                         }
 
                         String usuario = request.getParameter("usuario");
@@ -36,11 +36,19 @@
                         login.setString(2, senha);
                         ResultSet consulta = login.executeQuery();
 
+                        
                         if(consulta.next()){
-                            String username = "";
-                            String user = consulta.getString("usuario");
-                            session.setAttribute(username, user);
-                            response.sendRedirect("home.jsp"); // login success
+                            String senhaUsuario = consulta.getString("senha");
+                            int admin = Integer.parseInt(consulta.getString("admin"));
+                            if(senhaUsuario.equals("123456") && admin == 1){
+                                response.sendRedirect("../alterar_senha_admin.html");
+                            } else {
+                                session.setAttribute("id_usuario", consulta.getString("id"));
+                                session.setAttribute("usuario", consulta.getString("usuario"));
+                                session.setAttribute("email", consulta.getString("email"));
+                                session.setAttribute("admin", consulta.getString("admin"));
+                                response.sendRedirect("home.jsp"); // login success
+                            }
                         } 
                         
                         //login failed!
@@ -48,7 +56,7 @@
                     %>
 					<br>
                     <div>
-                        <a class="btn btn-primary pull-left" href="../index.html"> <!-- login -->
+                        <a class="btn btn-primary pull-left" href="../login.html"> <!-- login -->
                             <i class="fa fa-arrow-circle-left"></i> Voltar
                         </a>
                         <a class="btn btn-success pull-right" href="../cadastrar.html"> <!-- cadastrar.html -->

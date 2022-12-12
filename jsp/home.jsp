@@ -9,55 +9,84 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 	<!-- Custom CSS -->
-    <link rel="stylesheet" href="css/index.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/home.css" crossorigin="anonymous">
   </head>
   <body>
         <!-- Navbar -->
         <%@include file="menu.jsp" %>
         <!-- Content -->
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-4">
-					<br><br><br>
-				</div>		
-				<div class="col-4">
-					<br><br><br><br>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
                     <div class="row">
-                        <div class="col-lg-4 col-md-2 col-sm-2"></div>
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <h3>Logado!</h3>
-                            <%@ page import="java.sql.*" %>
-                            <%
-                               /* int vezes;
-                                Integer valor = (Integer)(session.getAttribute("vezes"));
-                                if(valor == null){
-                                    vezes = 1;
-                                    session.setAttribute("vezes", new Integer(vezes));
-                                }
-                                else{
-                                    vezes = valor.intValue();
-                                    vezes++;
-                                    session.setAttribute("vezes", new Integer(vezes));
-                                }*/
-                            %>
-                           <%--  <div class="card text-center" style="width: 18rem;">
-                                <img src="../img/among.jpg" class="card-img-top" alt="img_perfil">
-                                <div class="card-body">
-                                    <h5 class="card-title"><% out.println(session.getAttribute("username")); %></h5>
-                                    <p class="card-text">
-                                        Esta eh a <b><%= vezes %></b> vez que voce acessa esta pagina.
-                                        Seja bem vindo! <b><% out.println(session.getAttribute("nome")); %></b>
-                                    </p>
-                                </div>
-                            </div> --%>
+                        <div class="col-12">
                             <br>
                         </div>
-                        <div class="col-4"></div>
+                        <div class="col-lg-2 col-md-4 col-sm">                            
+                            <%@ page import="java.sql.*" %>
+                            <div class="card text-center">
+                                <div class="bg-white rounded shadow-sm py-4">
+                                    <img src="../img/profile/among.jpg" alt="imagem perfil" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                                        <h5 class="mb-0"><% out.println(session.getAttribute("usuario")); %></h5>
+                                        <span class="small text-muted"><% out.println(session.getAttribute("email")); %></span>
+                                        <div class="mt-2">
+                                            <p class="card-text">
+                                                <a class="btn btn-info" href="formalterar.jsp">Editar Perfil</a>
+                                            </p>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-10 col-md-8 col-sm">
+                            <h2>
+                                Titulo
+                            </h2>
+                            <p>
+                                Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+                            </p>
+                            <p>
+                                <a class="btn btn-primary" href="#">Saber mais</a>
+                            </p>
+                        </div>
                     </div>
-				</div>
-				<div class="col-4"></div>		
-			</div>
-		</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2 col-md-4">
+                </div>
+                <div class="col-4">
+                    <h2>
+                        Titulo
+                    </h2>
+                    <p>
+                        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+                    </p>
+                    <p>
+                        <a class="btn btn-primary" href="#">Saber mais</a>
+                    </p>
+                </div>
+                <div class="col-4">
+                    <h2>
+                        Titulo
+                    </h2>
+                    <p>
+                        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+                    </p>
+                    <p>
+                        <a class="btn btn-primary" href="#">Saber mais</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+		
     </body>
   <footer>
 		<!-- jQuery and Bootstrap Bundle (includes Popper) -->
