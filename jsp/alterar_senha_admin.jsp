@@ -31,17 +31,18 @@
 							  out.println("<div class='alert alert-danger'>A senha deve ser diferente da anterior!</div>");
 							} else{
 								try {
-								  String usuario = "admin";
-								  Class.forName("com.mysql.jdbc.Driver");
-								  Connection conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/natureza_viva","root","");
-                                  PreparedStatement admin = conexao.prepareStatement("select * from usuarios where usuario like ?");
-                                  admin.setString(1, "admin");
-                                  ResultSet resultado = admin.executeQuery();
-                                  if(!resultado.next()){
-								    out.println("<div class='alert alert-danger'>Usuário admin não cadastrado no banco!</div>");
-								  }
+									String usuario = "admin";
+									Class.forName("com.mysql.jdbc.Driver");
+									Connection conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/natureza_viva","root","");
+									PreparedStatement admin = conexao.prepareStatement("select * from usuarios where usuario like ?");
+									admin.setString(1, "admin");
+									ResultSet resultado = admin.executeQuery();
+									if(!resultado.next()){
+										out.println("<div class='alert alert-danger'>Usuário admin não cadastrado no banco!</div>");
+										return;
+									}
 								} catch (ClassNotFoundException erroClass){
-								    out.println("<div class='alert alert-danger'><b><i class='fa fa-times-circle'></i> Class Driver nao foi localizado! <br>Erro</b>: " + erroClass + "</div>");
+									out.println("<div class='alert alert-danger'><b><i class='fa fa-times-circle'></i> Class Driver nao foi localizado! <br>Erro</b>: " + erroClass + "</div>");
 							      } catch (SQLException e){
 								      if (e.getSQLState().equals("23000")){
 								      	out.println("<div class='alert alert-danger text-center'><i class='fa fa-times-circle'></i> Falha ao tentar alterar a senha!</div>");
@@ -51,13 +52,33 @@
 							      }
 
 								try{
-								  Class.forName("com.mysql.jdbc.Driver");
-								  Connection conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/natureza_viva","root","");
-								  PreparedStatement inserir = conexao.prepareStatement("update usuarios set senha = ? where usuario = 'admin'");
-								  inserir.setString(1, senha); 
-								  inserir.execute();
-								  out.println("<div class='alert alert-success text-center'><i class='fa fa-check-circle'></i> Senha alterada com sucesso!</div>");
-								  inserir.close();		
+									Class.forName("com.mysql.jdbc.Driver");
+									Connection conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/natureza_viva","root","");
+									PreparedStatement inserir = conexao.prepareStatement("update usuarios set senha = ? where usuario = 'admin'");
+									inserir.setString(1, senha); 
+									inserir.execute();
+									inserir.close();
+
+									//seta os dados do amin na sessao
+									PreparedStatement consulta = conexao.prepareStatement("select * from usuarios where usuario like ?");
+									consulta.setString(1, "admin");
+									ResultSet resultado = consulta.executeQuery();
+
+									while(resultado.next()){
+										session.setAttribute("id_usuario", resultado.getString("id"));
+										session.setAttribute("usuario", resultado.getString("usuario"));
+										session.setAttribute("email", resultado.getString("email"));
+										session.setAttribute("admin", resultado.getString("admin"));	
+									}
+
+									consulta.close();
+
+									out.println("<div class='alert alert-success text-center'><i class='fa fa-check-circle'></i> Senha alterada com sucesso!</div>");
+									out.println("<br>" 
+												+ "<a class='btn btn-danger pull-left' href='./home.jsp'>"
+												+ "<i class='fa fa-sign-in'></i> Acessar"
+												+ "</a>");
+								  return;
 							    } catch (ClassNotFoundException erroClass){
 								    out.println("<div class='alert alert-danger'><b><i class='fa fa-times-circle'></i> Class Driver nao foi localizado! <br>Erro</b>: " + erroClass + "</div>");
 							      } catch (SQLException e){
@@ -71,7 +92,7 @@
 						}						
 					%>
 					<br>
-					<a class="btn btn-danger pull-left" href="./form_alterar_senha.jsp"> <!-- cadastrar.html -->
+					<a class="btn btn-danger pull-left" href="../login.html"> <!-- cadastrar.html -->
                         <i class="fa fa-arrow-circle-left"></i> Voltar
                     </a>
 				</div>
@@ -84,4 +105,6 @@
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
   </footer>
+</html>
+</html>
 </html>

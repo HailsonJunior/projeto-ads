@@ -20,93 +20,42 @@
                 <div class="col-8">
                     <br><br><br>
                     <%@page import="java.sql.*" %>
-					<%@include file="conectar.jsp" %>
-
-					<% 
-						String nome = "";
-						String fone = "";
-						String email = "";
-						String dataNasc = "";
-						String foto = "";
-						String amigo = request.getParameter("selectAlterar");
-						PreparedStatement statement = conexao.prepareStatement("select * from amigos where nome=?");
-						statement.setString(1, amigo); 
-						ResultSet verificar = statement.executeQuery(); 
-						if(verificar.next()){ 
-							nome = verificar.getString("nome");
-							fone = verificar.getString("telefone");
-							email = verificar.getString("email");
-							dataNasc = verificar.getString("dataNasc");
-						}
-						statement.close(); 
-
-						PreparedStatement statement2 = conexao.prepareStatement("select * from login where nome=?");
-						statement2.setString(1, amigo);
-						ResultSet resultado = statement2.executeQuery(); 
-						if(resultado.next()){ 
-							foto = resultado.getString("foto");
-						}
-					%>
-					 <div class="card">
-                        <div class="card-header bg-info">
-                            <h3 class="card-title text-center text-white">Cadastro de Amigo</h3>
-                        </div>
-                        <form method="POST">
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="nome">Nome:</label>
-                                    <input type="text" class="form-control" name="nome" value="<%= nome %>" id="nome" placeholder="Digite seu nome" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="tel">Telefone</label>
-                                    <input type="text" class="form-control" name="tel" value="<%= fone %>" id="tel" placeholder="Digite seu telefone" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email:</label>
-                                    <input type="email" class="form-control" name="email" value="<%= email %>" id="email" placeholder="Digite seu e-mail" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="data">Data de Nascimento:</label>
-                                    <input type="date" class="form-control" name="data" value="<%= dataNasc %>" id="data" placeholder="Entre com sua data" required>
-                                </div>
-								<div class="form-group">
-                                    <label for="foto">Nome Foto:</label>
-                                    <input type="text" class="form-control" name="foto" value="<%= foto %>" id="data" placeholder="Entre com sua data" required>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-success btn-block">Alterar</button>
-                            </div>
-                        </form>
-                    </div>
+					<%@include file="conectar.jsp"%>
 					<%
-						nome = request.getParameter("nome") != null ? request.getParameter("nome").trim() : "";
+						String id = "";
+						String usuario = "";
+						String email = "";
+						String senha = request.getParameter("senha");
+						String senha2 = request.getParameter("senhaConfirme");
+
+						if(!senha.equals(senha2)){
+							out.println("<div class='alert alert-danger'>As senhas sao diferentes!</div>");
+							return;
+						}
+
+						usuario = request.getParameter("usuario") != null ? request.getParameter("usuario").trim() : "";
 						
-						if (request.getMethod().equals("POST") && nome.length() > 0) {
-							nome = request.getParameter("nome");
-							fone = request.getParameter("tel");
-							email = request.getParameter("email");
-							dataNasc = request.getParameter("data");
+						if (request.getMethod().equals("POST") && usuario.length() > 0) {
+							id = (String) session.getAttribute("id_usuario");
+							usuario = request.getParameter("usuario");
+							email = request.getParameter("email");				
 	
-							PreparedStatement amigos = conexao.prepareStatement("update amigos set telefone=?, email=?, dataNasc=? where nome=?");
-							amigos.setString(1,fone);
-							amigos.setString(2,email);
-							amigos.setString(3,dataNasc);
-							amigos.setString(4,nome);
+							PreparedStatement amigos = conexao.prepareStatement("update usuarios set usuario = ?, email = ?, senha = ? where id = ?");
+							amigos.setString(1, usuario);
+							amigos.setString(2, email);
+							amigos.setString(3, senha);
+							amigos.setString(4, id);
 							amigos.executeUpdate();
 							amigos.close();
 
-							//atualiza nome da foto
-							foto = request.getParameter("foto");
-							PreparedStatement login = conexao.prepareStatement("update login set foto=? where nome=?");
-							login.setString(1, foto);
-							login.setString(2, nome);
-							login.executeUpdate();
-							login.close();
-							session.setAttribute("foto", foto);
+							//atualiza info da sessao
+							session.setAttribute("usuario", usuario);
+							session.setAttribute("email", email);
 							out.println("<br><br>");
-							out.println("<div class='alert alert-success text-center'><i class='fa fa-check-circle'></i> Contato editado com sucesso!</div>");
-							
+							out.println("<div class='alert alert-success text-center'><i class='fa fa-check-circle'></i> Dados alterados com sucesso!</div>");
+						} else {
+							out.println("<br><br>");
+							out.println("<div class='alert alert-danger text-center'><i class='fa fa-times-circle'></i> Erro ao atualizar! Tente Novamente.</div>");
 						}
 					%>
                 </div>
@@ -118,12 +67,5 @@
 		<!-- jQuery and Bootstrap Bundle (includes Popper) -->
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-		<%-- Jquery Mask --%>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" crossorigin="anonymous"></script>
-        <script type="text/javascript">
-            $(document).ready(function(){
-                 $('#tel').mask('(00)00000-0000', {placeholder: "(00)00000-0000"});
-            });
-        </script>
   </footer>
 </html>
