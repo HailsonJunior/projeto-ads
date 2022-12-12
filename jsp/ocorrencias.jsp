@@ -43,28 +43,28 @@
                     </form>
                     <br>
                     <%@ page import="java.sql.*" %>
-					<%
+					          <%
                       PreparedStatement statement=conexao.prepareStatement("select * from agendamentos where status='usado'");
                       ResultSet listar=statement.executeQuery();
                       int reg=1;
 
                       while(listar.next()){
-	                    out.println("<b>AGENDAMENTO "+reg+":</b>");
+	                      out.println("<b>AGENDAMENTO "+reg+":</b>");
                         out.println("<b><br>Codigo: </b>");
                         out.println(listar.getString("id"));
                         out.println("<b><br>Nome Local: </b>");
-		                out.println(listar.getString("nome_local"));
+		                    out.println(listar.getString("nome_local"));
                         out.println("<b><br>Tipo: </b>");
-		                out.println(listar.getString("tipo"));
+		                    out.println(listar.getString("tipo"));
                         out.println("<b><br>Data: </b>");
-		                out.println(listar.getString("data"));
+		                    out.println(listar.getString("data"));
                         out.println("<b><br>Periodo: </b>");
                         out.println(listar.getString("periodo"));
                         out.println("<b><br>Status: </b>");
                         out.println(listar.getString("status"));
                         out.println("<b><br>Codigo Usuario Responsavel: </b>");
                         out.println(listar.getString("fk_responsavel")+"<p>"+"<br>");
-		                reg++;
+		                    reg++;
                       }
                     %>
                 </div>
@@ -85,10 +85,10 @@
 		out.println("Não há agendamentos usados!<p>");
 	else{
 		String agendamento=request.getParameter("agendamentosid");
-        String comentario=request.getParameter("comentario");		
+    String comentario=request.getParameter("comentario");		
 		PreparedStatement statement3=conexao.prepareStatement("insert into ocorrencias (id_agendamento, comentario) values (?, ?)");
 		statement3.setString(1,agendamento);
-        statement3.setString(2,comentario);
+    statement3.setString(2,comentario);
 		statement3.execute();
 		response.setIntHeader("Refresh", 2);
 	}
