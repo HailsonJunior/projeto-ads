@@ -44,7 +44,7 @@
                     <br>
                     <%@ page import="java.sql.*" %>
 					          <%
-                      PreparedStatement statement=conexao.prepareStatement("select * from agendamentos where status='usado'");
+                      PreparedStatement statement=conexao.prepareStatement("select * from agendamentos where status!='usado'");
                       ResultSet listar=statement.executeQuery();
                       int reg=1;
 
