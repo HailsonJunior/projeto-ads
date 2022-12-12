@@ -24,6 +24,7 @@
       </span>
   </div>
   <nav class="my-2 my-md-0 mr-md-3">
+    <a class="p-2 text-dark" href="formalterar.jsp">Alterar dados</a>
     <a class="p-2 text-dark" href="locais.jsp">Locais</a>
     <a class="p-2 text-dark" href="formcadastro.jsp">Cadastrar Local</a>
     <a class="p-2 text-dark" href="agendamentos.jsp">Agendamentos Admin</a>
