@@ -102,7 +102,7 @@
                 <div class="col-1"></div>
                 <div class="col-8 pull-left">
                     <br><br><br>
-                    <a class="btn btn-danger pull-left" href="index.html"> <!-- cadastrar.html -->
+                    <a class="btn btn-danger pull-left" href="home.jsp"> <!-- cadastrar.html -->
                         <i class="fa fa-arrow-circle-left"></i> Voltar
                     </a>
                 </div>
@@ -135,15 +135,24 @@
 
     while(listar3.next()){
       String fk_responsavel = listar3.getString("id");
-      PreparedStatement statement4=conexao.prepareStatement("insert into agendamentos (nome_local, tipo, data, periodo, status, fk_responsavel) values (?, ?, ?, ?, ?, ?)");
-      statement4.setString(1,nome);
-      statement4.setString(2,tipo);
-      statement4.setString(3,data);
-      statement4.setString(4,periodo);
-      statement4.setString(5,status);
-      statement4.setString(6,fk_responsavel);
-      statement4.execute();
-      response.setIntHeader("Refresh", 2);
+      PreparedStatement statement4=conexao.prepareStatement("select * from agendamentos where status != ? and fk_responsavel = ?");
+      statement4.setString(1,"usado");
+      statement4.setString(2,fk_responsavel);
+      ResultSet listar4=statement4.executeQuery();
+
+      if(listar4.next()){
+        out.println("<div class='alert alert-danger'>Nao e possivel realizar o agendamento. Ha outro agendamento em aberto.</div>");
+      } else {
+        PreparedStatement statement5=conexao.prepareStatement("insert into agendamentos (nome_local, tipo, data, periodo, status, fk_responsavel) values (?, ?, ?, ?, ?, ?)");
+        statement5.setString(1,nome);
+        statement5.setString(2,tipo);
+        statement5.setString(3,data);
+        statement5.setString(4,periodo);
+        statement5.setString(5,status);
+        statement5.setString(6,fk_responsavel);
+        statement5.execute();
+        response.setIntHeader("Refresh", 2);
+      }      
     }
    }
 %>

@@ -52,7 +52,7 @@
                 <div class="col-1"></div>
                 <div class="col-8 pull-left">
                     <br><br><br>
-                    <a class="btn btn-danger pull-left" href="index.html"> <!-- cadastrar.html -->
+                    <a class="btn btn-danger pull-left" href="home.jsp"> <!-- cadastrar.html -->
                         <i class="fa fa-arrow-circle-left"></i> Voltar
                     </a>
                 </div>
