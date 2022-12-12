@@ -78,30 +78,6 @@
                         %>
                     </div>
                 </section>
-                <%-- <div class="row">
-                    <div class="col-10">
-                        <form method='POST' action="formalterardados.jsp">
-                            <div class="form-group">
-                                <input hidden name="alterado" value="0">
-                                <select name="alterar" class="form-control" id="selectAlterar" required>
-                                    <%
-                                        String usuario = session.getAttribute("usuario");
-                                        PreparedStatement statement = conexao.prepareStatement("select * from usuarios where usuario = ?");
-                                        statement.setString(1, usuario);
-                                        ResultSet consulta = statement.executeQuery();
-                                        out.print("<option value='' hidden selected> Escolha um cadastro </option>");
-                                        while(consulta.next()){
-                                            out.println("<option value='" + consulta.getString("nome") + "'>" + consulta.getString("nome") + "</option>");
-                                        }					
-                                    %>
-                                </select>
-                            </div>                           
-                    </div>
-                    <div class="col-2">
-                        <button class='btn btn-outline-info' type='submit'>Alterar</button>
-                    </div>
-                        </form>
-                </div> --%>
             </div>
             <div class="col-2"></div>
         </div>

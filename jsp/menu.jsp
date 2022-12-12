@@ -31,6 +31,7 @@
     <a class="p-2 text-dark" href="ocorrencias.jsp">Ocorrencias admin</a>
     <a class="p-2 text-dark" href="ocorrencias_user.jsp">Ocorrencias User</a>
     <a class="p-2 text-dark" href="agendamentos_user.jsp">Agendamentos User</a>
+    <a class="p-2 text-dark" href="formalterar.jsp">Alterar dados</a>
   </nav>
   <a class="btn btn-danger" href="sair.jsp">
     <i class="fa fa-sign-out"></i> Sair
