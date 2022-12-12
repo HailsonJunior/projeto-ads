@@ -28,10 +28,6 @@
                         <form id="formCadastro" method="POST">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="username">Username responsavel</label>
-                                    <input type="text" class="form-control" name="username" id="username" placeholder="Informe o seu usuario" required>
-                                </div>
-                                <div class="form-group">
                                     <label for="nome">Nome Local</label>
                                     <input type="text" class="form-control" name="nome" id="nome" placeholder="Informe o nome do local" required>
                                 </div>
@@ -63,6 +59,45 @@
                 </div>
 				<div class="col-2"></div>
 			</div>
+        <br><br>
+        <%@ page import="java.sql.*" %>
+		    <%
+              Object obj_user = session.getAttribute("usuario");
+              String user = obj_user.toString();
+
+              Class.forName("com.mysql.jdbc.Driver");
+              Connection conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/natureza_viva","root","");
+              PreparedStatement statement1=conexao.prepareStatement("select id from usuarios where usuario = ?");
+              statement1.setString(1,user);
+              ResultSet listar=statement1.executeQuery();
+
+              while(listar.next()){
+                String user_id = listar.getString("id");
+                PreparedStatement statement2=conexao.prepareStatement("select * from agendamentos where fk_responsavel=?");
+                statement2.setString(1,user_id);
+                ResultSet listar2=statement2.executeQuery();
+                int reg=1;
+
+                while(listar2.next()){
+                  out.println("<b>AGENDAMENTO "+reg+":</b>");
+                  out.println("<b><br>Codigo: </b>");
+                  out.println(listar2.getString("id"));
+                  out.println("<b><br>Nome Local: </b>");
+                  out.println(listar2.getString("nome_local"));
+                  out.println("<b><br>Tipo: </b>");
+                  out.println(listar2.getString("tipo"));
+                  out.println("<b><br>Data: </b>");
+                  out.println(listar2.getString("data"));
+                  out.println("<b><br>Periodo: </b>");
+                  out.println(listar2.getString("periodo"));
+                  out.println("<b><br>Status: </b>");
+                  out.println(listar2.getString("status"));
+                  out.println("<b><br>Codigo Usuario Responsavel: </b>");
+                  out.println(listar2.getString("fk_responsavel")+"<p>"+"<br>");
+                  reg++;
+                }
+              }
+            %>
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-8 pull-left">
@@ -85,31 +120,30 @@
 <%@ page import="java.sql.*" %>
 <%
    if (request.getMethod().equals("POST")) {
-     String username=request.getParameter("username");
-     String nome=request.getParameter("nome");
-     String tipo=request.getParameter("tipo");
-     String data=request.getParameter("data");
-     String periodo=request.getParameter("periodo");
-     String status="pendente";
+    Object obj_user2 = session.getAttribute("usuario");
+    String user2 = obj_user2.toString();
+    String nome=request.getParameter("nome");
+    String tipo=request.getParameter("tipo");
+    String data=request.getParameter("data");
+    String periodo=request.getParameter("periodo");
+    String status="pendente";
 
-     Class.forName("com.mysql.jdbc.Driver");
-     Connection conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/natureza_viva","root",""); 
-     PreparedStatement usuario = conexao.prepareStatement("select id from usuarios where usuario = ?");
-     usuario.setString(1,username);
-     ResultSet consulta = usuario.executeQuery();
+    Class.forName("com.mysql.jdbc.Driver");
+    PreparedStatement statement3=conexao.prepareStatement("select id from usuarios where usuario = ?");
+    statement3.setString(1,user2);
+    ResultSet listar3=statement3.executeQuery();
 
-
-     if(consulta.next()){
-       Integer fk_responsavel = consulta.getInt("id");
-       PreparedStatement statement=conexao.prepareStatement("insert into agendamentos (nome_local, tipo, data, periodo, status, fk_responsavel) values (?, ?, ?, ?, ?, ?)");
-       statement.setString(1,nome);
-       statement.setString(2,tipo);
-       statement.setString(3,data);
-       statement.setString(4,periodo);
-       statement.setString(5,status);
-       statement.setInt(6,fk_responsavel);
-       statement.execute();
-       response.setIntHeader("Refresh", 2);
+    while(listar3.next()){
+      String fk_responsavel = listar3.getString("id");
+      PreparedStatement statement4=conexao.prepareStatement("insert into agendamentos (nome_local, tipo, data, periodo, status, fk_responsavel) values (?, ?, ?, ?, ?, ?)");
+      statement4.setString(1,nome);
+      statement4.setString(2,tipo);
+      statement4.setString(3,data);
+      statement4.setString(4,periodo);
+      statement4.setString(5,status);
+      statement4.setString(6,fk_responsavel);
+      statement4.execute();
+      response.setIntHeader("Refresh", 2);
     }
-  }
+   }
 %>

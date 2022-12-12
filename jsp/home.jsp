@@ -13,7 +13,7 @@
   </head>
   <body>
         <!-- Navbar -->
-        <%@include file="menu.jsp" %>
+        <%@include file="menu.jsp"%>
         <!-- Content -->
         <div class="container-fluid">
             <div class="row">

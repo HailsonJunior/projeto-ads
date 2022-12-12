@@ -24,13 +24,13 @@
 	                  <%
                         Class.forName("com.mysql.jdbc.Driver");
                         Connection conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/natureza_viva","root","");
-		                PreparedStatement statement2=conexao.prepareStatement("select * from agendamentos");
-		                int lin=0;
-		                ResultSet listar2=statement2.executeQuery();
-		                out.print("<option value='' selected>Codigo Agendamento</option>");
-		                while(listar2.next()){
-		                  out.println("<option value='"+listar2.getString("id")+"'>"+listar2.getString("id")+"</option>");	
-		                  lin++;
+		                    PreparedStatement statement=conexao.prepareStatement("select * from agendamentos");
+		                    int lin=0;
+		                    ResultSet listar2=statement.executeQuery();
+		                    out.print("<option value='' selected>Codigo Agendamento</option>");
+		                    while(listar2.next()){
+		                      out.println("<option value='"+listar2.getString("id")+"'>"+listar2.getString("id")+"</option>");	
+		                      lin++;
                         }					
 	                  %>
 	                  </select>
@@ -47,28 +47,38 @@
                     </form>
                     <br>
                     <%@ page import="java.sql.*" %>
-					<%
-                      PreparedStatement statement=conexao.prepareStatement("select * from agendamentos");
-                      ResultSet listar=statement.executeQuery();
+					          <%
+                      Object obj_user = session.getAttribute("usuario");
+                      String user = obj_user.toString();
+
+                      PreparedStatement statement2=conexao.prepareStatement("select * from agendamentos");
+                      ResultSet listar=statement2.executeQuery();
                       int reg=1;
 
                       while(listar.next()){
-	                    out.println("<b>AGENDAMENTO "+reg+":</b>");
+	                      out.println("<b>AGENDAMENTO "+reg+":</b>");
                         out.println("<b><br>Codigo: </b>");
                         out.println(listar.getString("id"));
                         out.println("<b><br>Nome Local: </b>");
-		                out.println(listar.getString("nome_local"));
+		                    out.println(listar.getString("nome_local"));
                         out.println("<b><br>Tipo: </b>");
-		                out.println(listar.getString("tipo"));
+		                    out.println(listar.getString("tipo"));
                         out.println("<b><br>Data: </b>");
-		                out.println(listar.getString("data"));
+		                    out.println(listar.getString("data"));
                         out.println("<b><br>Periodo: </b>");
                         out.println(listar.getString("periodo"));
                         out.println("<b><br>Status: </b>");
                         out.println(listar.getString("status"));
-                        out.println("<b><br>Codigo Usuario Responsavel: </b>");
-                        out.println(listar.getString("fk_responsavel")+"<p>"+"<br>");
-		                reg++;
+
+                        out.println("<b><br>Solicitante: </b>");
+                        String responsavel = listar.getString("fk_responsavel");
+                        PreparedStatement statement3=conexao.prepareStatement("select usuario from usuarios where id = ?");
+                        statement3.setString(1,responsavel);
+                        ResultSet listar3=statement3.executeQuery();
+                        if(listar3.next()){
+                          out.println(listar3.getString("usuario")+"<p>"+"<br>");
+                        }
+		                    reg++;
                       }
                     %>
                 </div>
@@ -85,16 +95,16 @@
 
 <%
    if (request.getMethod().equals("POST")) {
-	if(lin==0)
-		out.println("Não há agendamentos cadastrados!<p>");
-	else{
-		String agendamento=request.getParameter("agendamentosid");
-        String status=request.getParameter("status");		
-		PreparedStatement statement3=conexao.prepareStatement("update agendamentos set status=? where id=?");
-		statement3.setString(1,status);
-        statement3.setString(2,agendamento);
-		statement3.execute();
-		response.setIntHeader("Refresh", 2);
-	}
+	   if(lin==0)
+		   out.println("Não há agendamentos cadastrados!<p>");
+	   else{
+		   String agendamento=request.getParameter("agendamentosid");
+       String status=request.getParameter("status");		
+		   PreparedStatement statement4=conexao.prepareStatement("update agendamentos set status=? where id=?");
+		   statement4.setString(1,status);
+       statement4.setString(2,agendamento);
+		   statement4.execute();
+		   response.setIntHeader("Refresh", 2);
+	  }
   }
 %>

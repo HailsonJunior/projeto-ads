@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 22-Nov-2022 às 01:51
--- Versão do servidor: 10.4.20-MariaDB
--- versão do PHP: 7.4.22
+-- Tempo de geração: 12-Dez-2022 às 08:09
+-- Versão do servidor: 10.4.24-MariaDB
+-- versão do PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,8 +42,8 @@ CREATE TABLE `agendamentos` (
 --
 
 INSERT INTO `agendamentos` (`id`, `nome_local`, `tipo`, `data`, `periodo`, `status`, `fk_responsavel`) VALUES
-(3, 'test name', 'Salao', '2022-11-21', 'manha', 'usado', 1),
-(4, 'Test 2', 'Salao', '2022-11-21', 'tarde', 'pendente', 2);
+(6, 'Jujuba Eventos', 'salao', '2022-12-16', 'noite', 'pendente', 5),
+(7, 'Auditorio Perola', 'auditorio', '2022-12-18', 'tarde', 'pendente', 6);
 
 -- --------------------------------------------------------
 
@@ -56,6 +56,18 @@ CREATE TABLE `local` (
   `nome` varchar(50) NOT NULL,
   `tipo` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `local`
+--
+
+INSERT INTO `local` (`id`, `nome`, `tipo`) VALUES
+(2, 'Jujuba Eventos', 'salao'),
+(3, 'Rosazul Festas', 'salao'),
+(4, 'Cantinho Festas', 'salao'),
+(5, '101 Hall Eventos', 'salao'),
+(6, 'Auditorio Musical UNASP', 'auditorio'),
+(7, 'Auditorio Perola', 'auditorio');
 
 -- --------------------------------------------------------
 
@@ -74,7 +86,8 @@ CREATE TABLE `ocorrencias` (
 --
 
 INSERT INTO `ocorrencias` (`id`, `id_agendamento`, `comentario`) VALUES
-(4, 3, 'test');
+(5, 6, 'Limpar Local'),
+(6, 7, 'test');
 
 -- --------------------------------------------------------
 
@@ -96,7 +109,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `usuario`, `email`, `senha`, `created_at`, `admin`) VALUES
-(2, 'admin', 'admin@email.com', '123456', '2022-10-17 20:25:30', 1);
+(5, 'admin', 'admin@naturezaviva.com', '123456', '2022-12-12 03:04:47', 1),
+(6, 'hailson', 'hailson@naturezaviva.com', 'user', '2022-12-12 03:05:22', 0);
 
 --
 -- Índices para tabelas despejadas
@@ -136,25 +150,25 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `agendamentos`
 --
 ALTER TABLE `agendamentos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `local`
 --
 ALTER TABLE `local`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `ocorrencias`
 --
 ALTER TABLE `ocorrencias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

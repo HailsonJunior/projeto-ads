@@ -24,14 +24,14 @@
 	                  <%
                         Class.forName("com.mysql.jdbc.Driver");
                         Connection conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/natureza_viva","root","");
-		                PreparedStatement statement2=conexao.prepareStatement("select * from agendamentos where status='usado'");
-		                int lin=0;
-		                ResultSet listar2=statement2.executeQuery();
-		                out.print("<option value='' selected>Codigo Agendamento</option>");
-		                while(listar2.next()){
-		                  out.println("<option value='"+listar2.getString("id")+"'>"+listar2.getString("id")+"</option>");	
-		                  lin++;
-                        }					
+		                    PreparedStatement statement2=conexao.prepareStatement("select * from agendamentos");
+		                    int lin=0;
+		                    ResultSet listar2=statement2.executeQuery();
+		                    out.print("<option value='' selected>Codigo Agendamento</option>");
+		                    while(listar2.next()){
+		                      out.println("<option value='"+listar2.getString("id")+"'>"+listar2.getString("id")+"</option>");	
+		                      lin++;
+                            }					
 	                  %>
 	                  </select>
                       <br>

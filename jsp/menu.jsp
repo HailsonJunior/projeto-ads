@@ -5,10 +5,11 @@
 	</a>
   </h5>
   <nav class="my-2 my-md-0 mr-md-3">
-    <a class="p-2 text-dark" href="formcadastro.jsp">Cadastro</a>
+    <a class="p-2 text-dark" href="locais.jsp">Locais</a>
+    <a class="p-2 text-dark" href="formcadastro.jsp">Cadastrar Local</a>
     <a class="p-2 text-dark" href="agendamentos.jsp">Agendamentos Admin</a>
-    <a class="p-2 text-dark" href="ocorrencias.jsp">Ocorrencias Admin</a>
+    <a class="p-2 text-dark" href="ocorrencias.jsp">Ocorrencias</a>
     <a class="p-2 text-dark" href="agendamentos_user.jsp">Agendamentos User</a>
   </nav>
-  <a class="btn btn-danger"  href="sair.jsp">Sair</a>
+  <a class="btn btn-danger"  href="../login.html">Sair</a>
 </div>
