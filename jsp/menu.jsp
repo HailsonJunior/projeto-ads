@@ -23,14 +23,23 @@
         <b>A -</b>
       </span>
   </div>
+  <%@ page session="true" %>
+  <script>
+    var isAdmin = parseInt('${sessionScope.admin}');
+  </script>
   <nav class="my-2 my-md-0 mr-md-3">
-    <a class="p-2 text-dark" href="formalterar.jsp">Alterar dados</a>
     <a class="p-2 text-dark" href="locais.jsp">Locais</a>
-    <a class="p-2 text-dark" href="formcadastro.jsp">Cadastrar Local</a>
-    <a class="p-2 text-dark" href="agendamentos.jsp">Agendamentos Admin</a>
-    <a class="p-2 text-dark" href="ocorrencias.jsp">Ocorrencias admin</a>
-    <a class="p-2 text-dark" href="ocorrencias_user.jsp">Ocorrencias User</a>
-    <a class="p-2 text-dark" href="agendamentos_user.jsp">Agendamentos User</a>
+    <%-- Opc Admin --%>
+    <span id="admin">
+      <a class="p-2 text-dark" href="formcadastro.jsp">Cadastrar Local</a>
+      <a class="p-2 text-dark" href="agendamentos.jsp">Agendamentos</a>
+      <a class="p-2 text-dark" href="ocorrencias.jsp">Ocorrencias</a>
+    </span>
+    <%-- Opc User --%>
+    <span id="user">
+      <a class="p-2 text-dark" href="ocorrencias_user.jsp">Ocorrencias</a>
+      <a class="p-2 text-dark" href="agendamentos_user.jsp">Agendamentos</a>
+    </span>
     <a class="p-2 text-dark" href="formalterar.jsp">Alterar dados</a>
   </nav>
   <a class="btn btn-danger" href="sair.jsp">
@@ -41,3 +50,6 @@
 		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
 <script src="../js/menu.js"></script>
+
+<%-- <c:if test="${sessionScope.admin == 1}">
+</c:if> --%>
