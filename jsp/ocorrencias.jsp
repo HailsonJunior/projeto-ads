@@ -24,7 +24,7 @@
 	                  <%
                         Class.forName("com.mysql.jdbc.Driver");
                         Connection conexao = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/natureza_viva","root","");
-		                    PreparedStatement statement2=conexao.prepareStatement("select * from agendamentos");
+		                    PreparedStatement statement2=conexao.prepareStatement("select * from agendamentos where status != 'usado'");
 		                    int lin=0;
 		                    ResultSet listar2=statement2.executeQuery();
 		                    out.print("<option value='' selected>Codigo Agendamento</option>");
