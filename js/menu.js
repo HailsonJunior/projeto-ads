@@ -13,4 +13,12 @@ $(document).ready(function(){
         $("nav").css('font-size',  parseInt(size)  - 2)
         $(".btn").css('font-size',  parseInt(size)  - 2)
     });
+
+    if(parseInt(isAdmin) === 1){
+        $('#user').hide();
+        $('#admin').show();
+    } else {
+        $('#user').show();
+        $('#admin').hide();
+    }
 });
