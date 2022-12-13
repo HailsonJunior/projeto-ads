@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="tipo">Tipo Local</label>
-                                    <select class="form-control" id="tipo">
+                                    <select name='tipo' class="form-control">
                                         <option value="salao" selected>Salao</option>
                                         <option value="auditorio">Auditorio</option>
                                     </select>
