@@ -38,13 +38,24 @@
                         ResultSet listar2=statement2.executeQuery();
 
                         while(listar2.next()){
-                          out.println("<b>Ocorrencia "+reg+":</b>");
-                          out.println("<b><br>Codigo: </b>");
-                          out.println(listar2.getString("id"));
-                          out.println("<b><br>Codigo Agendamento: </b>");
-		                  out.println(listar2.getString("id_agendamento"));
-                          out.println("<b><br>Comentario: </b>");
-		                  out.println(listar2.getString("comentario"));
+                          out.println("<div class='row'>"
+                                  + "<div class='col-2'></div>"
+                                  + "<div class='col-8'>"
+                                  + "<div class='card'>"
+                                  + "<div class='card-body mt-n1'>"
+                                  + "<b>Ocorrencia "+reg+":</b>"
+                                  + "<b><br>Codigo: </b>"
+                                  + listar2.getString("id")
+                                  + "<b><br>Codigo Agendamento: </b>"
+                                  + listar2.getString("id_agendamento")
+                                  + "<b><br>Comentario: </b>"
+                                  + listar2.getString("comentario")
+                                  + "</div>"
+                                  + "</div> <br>"
+                                  + "</div>"
+                                  + "<div class='col-2'></div>"
+                                  + "</div>"
+                        );
                           reg++;
                         }
                       }

@@ -32,12 +32,12 @@
                                     <input type="text" class="form-control" name="nome" id="nome" placeholder="Informe o nome do local" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="tipo">Tipo Local</label><br>
-                                    <select name='tipo'>
-                                      <option value="salao" selected>Salao</option>
-                                      <option value="auditorio">Auditorio</option>
+                                    <label for="tipo">Tipo Local</label>
+                                    <select class="form-control" id="tipo">
+                                        <option value="salao" selected>Salao</option>
+                                        <option value="auditorio">Auditorio</option>
                                     </select>
-                                </div>
+                                  </div>
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary">Enviar</button>

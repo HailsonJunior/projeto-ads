@@ -32,19 +32,19 @@
                                     <input type="text" class="form-control" name="nome" id="nome" placeholder="Informe o nome do local" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="tipo">Tipo Local</label><br>
-                                    <select name='tipo'>
-                                      <option value="salao" selected>Salao</option>
-                                      <option value="auditorio">Auditorio</option>
+                                    <label for="tipo">Tipo Local</label>
+                                    <select class="form-control" id="tipo">
+                                        <option value="salao" selected>Salao</option>
+                                        <option value="auditorio">Auditorio</option>
                                     </select>
-                                </div>
+                                  </div>
                                 <div class="form-group">
                                     <label for="data">Data</label>
                                     <input type="date" class="form-control"  name="data" id="data" placeholder="Informe a data" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="periodo">Periodo</label><br>
-                                    <select name='periodo'>
+                                    <select class="form-control" id="periodo" name='periodo'>
                                       <option value="manha" selected>Manha</option>
                                       <option value="tarde">Tarde</option>
                                       <option value="noite">Noite</option>
@@ -78,7 +78,14 @@
                 ResultSet listar2=statement2.executeQuery();
                 int reg=1;
 
+                
+
                 while(listar2.next()){
+                  out.println("<div class='row'>");
+		              out.println("<div class='col-2'></div>");
+                  out.println("<div class='col-8'>");
+                  out.println("<div class='card'>");
+                  out.println("<div class='card-body'>");
                   out.println("<b>AGENDAMENTO "+reg+":</b>");
                   out.println("<b><br>Codigo: </b>");
                   out.println(listar2.getString("id"));
@@ -94,7 +101,12 @@
                   out.println(listar2.getString("status"));
                   out.println("<b><br>Codigo Usuario Responsavel: </b>");
                   out.println(listar2.getString("fk_responsavel")+"<p>"+"<br>");
+                  out.println("</div>");
+                  out.println("</div>");
                   reg++;
+                  out.println("</div>");
+                  out.println("<div class='col-2'></div>");
+                  out.println("</div>");
                 }
               }
             %>
@@ -141,7 +153,14 @@
       ResultSet listar4=statement4.executeQuery();
 
       if(listar4.next()){
-        out.println("<div class='alert alert-danger'>Nao e possivel realizar o agendamento. Ha outro agendamento em aberto.</div>");
+        out.println("<div class='row'>"
+                  + "<div class='col-2'></div>"
+                  + "<div class='col-8'>"
+                  + "<div class='alert alert-danger'>Nao e possivel realizar o agendamento. Ha outro agendamento em aberto.</div>"
+                  + "</div>"
+                  + "<div class='col-2'></div>"
+                  + "</div>"
+        );
       } else {
         PreparedStatement statement5=conexao.prepareStatement("insert into agendamentos (nome_local, tipo, data, periodo, status, fk_responsavel) values (?, ?, ?, ?, ?, ?)");
         statement5.setString(1,nome);

@@ -28,12 +28,23 @@
                       int reg=1;
 
                       while(listar.next()){
-                        out.println("<b><br>Nome: </b>");
-                        out.println(listar.getString("nome"));
-                        out.println("<b><br>Tipo: </b>");
-		                out.println(listar.getString("tipo"));
-                        out.println("<br><br>");
-		                reg++;
+                         out.println("<div class='row'>"
+                                  + "<div class='col-2'></div>"
+                                  + "<div class='col-8'>"
+                                  + "<div class='card'>"
+                                  + "<div class='card-body mt-n4'>"
+                                  + "<b><br>Nome: </b>"
+                                  + listar.getString("nome")
+                                  + "<b><br>Tipo: </b>"
+                                  + listar.getString("tipo")
+                                  + "</div>"
+                                  + "</div> <br>"
+                                  + "</div>"
+                                  + "<div class='col-2'></div>"
+                                  + "</div>"
+                        );
+                
+		                    reg++;
                       }
                     %>
                 </div>

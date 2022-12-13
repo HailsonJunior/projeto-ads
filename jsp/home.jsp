@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 	<!-- Custom CSS -->
-    <link rel="stylesheet" href="../css/home.css" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../css/footer.css">
   </head>
   <body>
         <!-- Navbar -->
@@ -78,19 +78,20 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-
-
-
-		
+        <br><br><br><br>
+        <footer class="container-fluid bg-grey">
+            <div class="row">
+                <div class="col-12" style="background: #000;" id="footer">
+                    <p class="text-center mt-3">
+                        <i class="fa fa-copyright" aria-hidden="true"></i> Copyright 2022 Jonas Lima & Hailson Ferreira & Gustavo Xavier - All Right Reserved
+                    </p>
+                </div>
+            </div>
+        </footer>		
     </body>
-  <footer>
-		<!-- jQuery and Bootstrap Bundle (includes Popper) -->
-		<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-  </footer>
+<div>
+    <!-- jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+</div>
 </html>
